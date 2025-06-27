@@ -1,17 +1,15 @@
 import { useState } from 'react'
-import { consulta } from './consulta.js'
 
-export function useMovies () {
-  const [peliculas, setPeliculas] = useState(consulta)
+export function useMovies ({ busqueda }) {
+  const [peliculas, setPeliculas] = useState([])
   const API_KEY = 'a48c4d5a'
   const API_URL = 'https://www.omdbapi.com/'
   const API_SEARCH = `${API_URL}?apikey=${API_KEY}&s=`
 
-  const obtenerPeliculas = async (e) => {
-    e.preventDefault()
-    const res = await fetch(`${API_SEARCH}${e.target.value}`)
+  const obtenerPeliculas = async () => {
+    const res = await fetch(`${API_SEARCH}${busqueda}`)
     const data = await res.json()
-    setPeliculas(peliculas)
+    setPeliculas(data.Search || []) // Si no hay resultados, devolvemos un array vacío
   }
 
   const peliculasMappeadas = peliculas.map((p) => ({
@@ -21,5 +19,5 @@ export function useMovies () {
     Poster: p.Poster
   }))
 
-  return { peliculas: peliculasMappeadas }
+  return { peliculas: peliculasMappeadas, obtenerPeliculas }
 }

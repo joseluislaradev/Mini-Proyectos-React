@@ -3,7 +3,13 @@ const ListaPeliculas = ({ peliculas }) => {
 
     peliculas.map((p) => (
       <div className='pelicula' key={p.Id}>
-        <img src={p.Poster} alt={p.Titulo} />
+        <div className='pelicula-img'>
+          <img src={p.Poster} alt={p.Titulo} />
+          <div className='contenedor-iconos'>
+            <span className='material-symbols-outlined'>play_arrow</span>
+            <span class='material-symbols-outlined'>info_i</span>
+          </div>
+        </div>
         <h3>{p.Titulo}</h3>
         <p>{p.Año}</p>
       </div>

@@ -1,0 +1,49 @@
+
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+header h1{
+    color: #ff0000;
+}
+
+
+header form{
+    display: flex;
+    width: 60%;
+}
+
+header form input{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+}   
+
+main h2{
+    margin: 2.5rem 0;
+}
+
+.error{
+    text-align: right;
+}
+
+
+.peliculas{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2.5rem;
+}
+
+.pelicula{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s ease-in-out;
+
+}
+
+.pelicula:hover{
+    transform: scale(1.1);
+}
+

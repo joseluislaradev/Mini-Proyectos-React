@@ -1,5 +1,5 @@
 {
-  "name": "05-react-buscador-peliculas",
+  "name": "06-shopping-cart",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,10 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^4.6.0",
-    "just-debounce-it": "^3.2.0",
-    "just-diff": "^6.0.2",
-    "motion": "^12.23.0",
+    "@vitejs/plugin-react": "4.6.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },

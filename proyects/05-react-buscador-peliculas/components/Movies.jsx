@@ -7,7 +7,7 @@ const ListaPeliculas = ({ peliculas }) => {
           <img src={p.Poster} alt={p.Titulo} />
           <div className='contenedor-iconos'>
             <span className='material-symbols-outlined'>play_arrow</span>
-            <span class='material-symbols-outlined'>info_i</span>
+            <span className='material-symbols-outlined'>info_i</span>
           </div>
         </div>
         <h3>{p.Titulo}</h3>
@@ -27,6 +27,7 @@ const NoMoviesResult = () => {
 }
 
 export const Peliculas = ({ peliculas }) => {
+  console.log('Las pleiculas recibidas son', peliculas)
   const tienePeliculas = peliculas.length > 0
   return (
     <div className='peliculas'>

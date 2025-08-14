@@ -1,34 +1,66 @@
-import { ClearCartIcon, RemoveFromCartIcon, CartIcon } from './Icons.jsx'
-import { useId } from 'react'
-import './Cart.css'
+import { ClearCartIcon, CartIcon } from "./Icons.jsx";
+import { useId } from "react";
+import "./Cart.css";
+import { useCart } from "../hooks/useCart.js";
 
-export function Cart () {
-  const cartCheckboxId = useId()
+export function Cart() {
+  const cartCheckboxId = useId();
+  const { cart, addToCart, removeFromCart, clearCart } = useCart();
+
+  console.log(cart);
 
   return (
     <>
-      <label className='cart-button' htmlFor={cartCheckboxId}>
+      <label className="cart-button" htmlFor={cartCheckboxId}>
         <CartIcon />
       </label>
-      <input type='checkbox' id={cartCheckboxId} hidden />
+      <input type="checkbox" id={cartCheckboxId} hidden />
 
-      <aside className='cart'>
+      <aside className="cart">
         <ul>
-          <li>
-            <img src='https://cdn.dummyjson.com/product-images/groceries/apple/thumbnail.webp' alt='Manzana' />
-            <div>
-              <strong>iPhone</strong> - $1499
-            </div>
-            <footer>
-              <small>
-                Qty: 1
-              </small>
-              <button> + </button>
-            </footer>
-          </li>
+          {cart.map((product) => {
+            return (
+              <li key={product.id}>
+                <img src={product.thumbnail} alt={product.title} />
+                <div>
+                  <strong>{product.title}</strong> - {product.price}
+                </div>
+                <footer>
+                  <small>Qty: {product.quantity}</small>
+                  <button
+                    onClick={() => {
+                      removeFromCart(product);
+                    }}
+                  >
+                    {" "}
+                    -{" "}
+                  </button>
+                  <button
+                    onClick={() => {
+                      addToCart(product);
+                    }}
+                  >
+                    {" "}
+                    +{" "}
+                  </button>
+                </footer>
+              </li>
+            );
+          })}
         </ul>
-      </aside>
 
+        {cart.length > 0 && (
+          <button
+            onClick={() => {
+              clearCart();
+            }}
+          >
+            <ClearCartIcon />
+          </button>
+        )}
+
+        {cart.length == 0 && <p>Sin elementos</p>}
+      </aside>
     </>
-  )
+  );
 }

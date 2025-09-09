@@ -1,12 +1,9 @@
-import { IDIOMA_POR_DEFECTO, IDIOMAS_SOPORTADOS } from '../constants.ts';
+
+import { IDIOMAS_SOPORTADOS, IDIOMA_POR_DEFECTO } from './constants'
 
 export type Idioma = keyof typeof IDIOMAS_SOPORTADOS; //Keyof nos devuelve las claves de un objeto como un union type
 export type AutoLenguaje = typeof IDIOMA_POR_DEFECTO; // typeof nos devuelve el tipo de un valor
 export type IdiomaConAuto = Idioma | AutoLenguaje;
-
-const idioma: Idioma = 'es'; // Correcto
-const idiomaInvalido: Idioma = 'SDFSF'; // Error esperado
-
 
 export interface State {
   from: string

@@ -1,10 +1,11 @@
 import { type State, type Action, type IdiomaConAuto, type Idioma } from '../types.d';
 import { useReducer } from 'react';
+import { IDIOMA_POR_DEFECTO } from '../constants';
 
 
 //1. Definir el estado inicial
 const inicialState: State = {
-  from: 'auto',
+  from: IDIOMA_POR_DEFECTO,
   to: 'es',
   text: '',
   result: '',
@@ -16,6 +17,7 @@ function reducer(state: State, action: Action): State {
   const { type } = action; //El dispatch nos manda que vamos a hacer y con que lo vamos a cambiar
   switch(type) {
     case 'INTERCAMBIAR_IDIOMAS':
+      if(state.from === IDIOMA_POR_DEFECTO) return state; //Si el from es auto no hacemos nada
       return {
         ...state,
         from: state.to,
